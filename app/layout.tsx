@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ML Studios — Building Intelligent Products For The Next Decade",
+  title: "ML Studios — We Build Things That Actually Work",
   description:
-    "ML Studios is an innovation lab building AI-powered products across automation, self-discovery, play, and protection. Scheduler is live. Arcana, Puzzle, and Insurance AI are in motion.",
+    "ML Studios is a product and software studio building websites, apps, and games. Scheduler, Resume, and TradeOrgs are live. Client projects welcome.",
 };
 
 export default function RootLayout({

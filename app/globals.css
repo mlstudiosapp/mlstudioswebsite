@@ -19,12 +19,10 @@
   /* Product identities */
   --scheduler-primary: #6C8CFF;
   --scheduler-secondary: #3A4FCC;
-  --arcana-primary: #B388FF;
-  --arcana-secondary: #F5C46B;
-  --puzzle-primary: #FF8A4C;
-  --puzzle-secondary: #4CE5D8;
-  --insurance-primary: #3DDC84;
-  --insurance-secondary: #1E8F52;
+  --resume-primary: #3DDC84;
+  --resume-secondary: #1E8F52;
+  --tradeorgs-primary: #F5C46B;
+  --tradeorgs-secondary: #B388FF;
 
   /* Core */
   --core-glow: #8FA8FF;

@@ -1,9 +1,9 @@
 import { Nav } from "@/components/sections/nav";
 import { Hero } from "@/components/sections/hero";
-import { GalaxySection } from "@/components/sections/galaxy-section";
-import { InnovationLab } from "@/components/sections/innovation-lab";
-import { EcosystemNetwork } from "@/components/sections/ecosystem-network";
-import { FounderVision } from "@/components/sections/founder-vision";
+import { WhatWeDo } from "@/components/sections/what-we-do";
+import { ProductsGrid } from "@/components/sections/products-grid";
+import { GamesSection } from "@/components/sections/games-section";
+import { ClientWork } from "@/components/sections/client-work";
 import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
@@ -12,10 +12,10 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <GalaxySection />
-        <InnovationLab />
-        <EcosystemNetwork />
-        <FounderVision />
+        <WhatWeDo />
+        <ProductsGrid />
+        <GamesSection />
+        <ClientWork />
       </main>
       <Footer />
     </>

@@ -1,3 +1,5 @@
+import { products, gamesHubUrl } from "@/lib/products";
+
 export function Footer() {
   return (
     <footer className="relative border-t border-panel-border px-6 sm:px-10 py-12">
@@ -7,29 +9,37 @@ export function Footer() {
             ML STUDIOS
           </span>
           <p className="mt-2 text-xs text-text-tertiary max-w-xs leading-relaxed">
-            Building intelligent products for the next decade.
+            We build things that actually work.
           </p>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono-label text-xs uppercase text-text-secondary">
+          {products.map((product) => (
+            <a
+              key={product.id}
+              href={product.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-text-primary transition-colors"
+            >
+              {product.name}
+            </a>
+          ))}
           <a
-            href="https://scheduler.mlstudiosapp.com"
+            href={gamesHubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-text-primary transition-colors"
           >
-            Scheduler
-          </a>
-          <a href="/arcana" className="hover:text-text-primary transition-colors">
-            Arcana
-          </a>
-          <a href="/puzzle" className="hover:text-text-primary transition-colors">
-            Puzzle
+            Games
           </a>
           <a
-            href="/insurance-ai"
+            href="mailto:admin@mlstudiosapp.com"
             className="hover:text-text-primary transition-colors"
           >
-            Insurance AI
+            Contact
+          </a>
+          <a href="/privacy" className="hover:text-text-primary transition-colors">
+            Privacy
           </a>
         </div>
         <span className="text-xs text-text-tertiary font-mono-label">

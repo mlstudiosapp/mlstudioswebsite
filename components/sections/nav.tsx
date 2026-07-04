@@ -27,19 +27,17 @@ export function Nav() {
         </span>
       </div>
       <nav className="hidden sm:flex items-center gap-8 font-mono-label text-xs uppercase text-text-secondary">
-        <a href="#galaxy" className="hover:text-text-primary transition-colors">
-          Galaxy
+        <a href="#products" className="hover:text-text-primary transition-colors">
+          Products
         </a>
-        <a href="#lab" className="hover:text-text-primary transition-colors">
-          Lab
+        <a href="#games" className="hover:text-text-primary transition-colors">
+          Games
         </a>
         <a
-          href="https://scheduler.mlstudiosapp.com"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#client-work"
           className="rounded-full px-4 py-2 border border-panel-border text-text-primary normal-case font-body hover:border-text-tertiary transition-colors"
         >
-          Open Scheduler
+          Start a project
         </a>
       </nav>
     </motion.header>
