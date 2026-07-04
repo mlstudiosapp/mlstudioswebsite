@@ -12,7 +12,7 @@ const HeroScene = dynamic(
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 40%, rgba(143,168,255,0.22) 0%, rgba(143,168,255,0) 60%)",
+            "radial-gradient(circle at 50% 45%, rgba(143,168,255,0.2) 0%, rgba(143,168,255,0) 60%)",
         }}
       />
     ),
@@ -21,25 +21,13 @@ const HeroScene = dynamic(
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden grain">
-      {/* Ambient backdrop glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 35%, rgba(108,140,255,0.12) 0%, rgba(5,6,10,0) 70%)",
-        }}
-      />
-
-      {/* 3D wordmark scene — fills the section, text overlays lower third */}
-      <div className="absolute inset-0" aria-hidden="true">
+    <section className="relative flex flex-col overflow-hidden grain pt-28 pb-16">
+      {/* 3D wordmark stage — bounded height, normal flow, cannot overlap content below */}
+      <div className="relative w-full h-[38vh] sm:h-[44vh] min-h-[260px] max-h-[440px]">
         <HeroScene />
       </div>
 
-      {/* Spacer that gives the wordmark its stage */}
-      <div className="h-[52vh] sm:h-[56vh]" aria-hidden="true" />
-
-      <div className="relative z-10 flex flex-col items-center px-6 pb-24">
+      <div className="relative z-10 flex flex-col items-center px-6 mt-2 sm:mt-4">
         <motion.span
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,7 +81,7 @@ export function Hero() {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-text-tertiary"
+        className="mt-16 flex justify-center text-text-tertiary"
         aria-hidden="true"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">

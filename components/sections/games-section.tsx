@@ -40,14 +40,6 @@ function SnakeBorder() {
 export function GamesSection() {
   return (
     <section id="games" className="relative py-32 px-6 border-t border-panel-border">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 45% 35% at 50% 15%, rgba(61,220,132,0.05) 0%, rgba(5,6,10,0) 70%)",
-        }}
-      />
-
       <div className="text-center mb-16 max-w-2xl mx-auto">
         <motion.span
           initial={{ opacity: 0, y: 20 }}

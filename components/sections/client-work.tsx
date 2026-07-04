@@ -34,14 +34,6 @@ export function ClientWork() {
       id="client-work"
       className="relative py-32 px-6 border-t border-panel-border"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 40% at 50% 100%, rgba(179,136,255,0.06) 0%, rgba(5,6,10,0) 70%)",
-        }}
-      />
-
       <div className="text-center mb-16 max-w-2xl mx-auto">
         <motion.span
           initial={{ opacity: 0, y: 20 }}
