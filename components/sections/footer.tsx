@@ -12,7 +12,7 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono-label text-xs uppercase text-text-secondary">
           <a
-            href="https://sucheduler.mlstudiosapp.com"
+            href="https://scheduler.mlstudiosapp.com"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-text-primary transition-colors"

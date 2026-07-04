@@ -51,7 +51,7 @@ export const products: Product[] = [
     statusLabel: "Live",
     colors: { primary: "#6C8CFF", secondary: "#3A4FCC" },
     motif: "satellite",
-    href: "https://sucheduler.mlstudiosapp.com",
+    href: "https://scheduler.mlstudiosapp.com",
     external: true,
     orbit: { radius: 32, angle: -40, periodSeconds: 28, scale: 1 },
   },

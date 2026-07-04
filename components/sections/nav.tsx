@@ -34,7 +34,7 @@ export function Nav() {
           Lab
         </a>
         <a
-          href="https://sucheduler.mlstudiosapp.com"
+          href="https://scheduler.mlstudiosapp.com"
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-full px-4 py-2 border border-panel-border text-text-primary normal-case font-body hover:border-text-tertiary transition-colors"
