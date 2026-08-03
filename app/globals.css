@@ -71,21 +71,74 @@ textarea:focus-visible,
   border-radius: 4px;
 }
 
-/* The only entrance animation on the site: a short fade-up in the hero. */
+/* Hero entrance. Transform and opacity only — both composited, so this
+   stays smooth on phones. `--delay` sequences the lines under the mark. */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: none; }
 }
 
 .fade-up {
-  animation: fade-up 0.5s ease-out both;
+  animation: fade-up 0.55s ease-out both;
+  animation-delay: var(--delay, 0s);
+}
+
+/* The wordmark: every letter rises out of its own mask, one after the
+   next. Words are unbreakable units so a narrow screen can only ever
+   break at the space, never mid-word. */
+.wordmark-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.wordmark-letter {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  transition: transform 0.35s ease-out;
+}
+
+.wordmark-letter > span {
+  display: inline-block;
+  background: linear-gradient(180deg, #FFFFFF 0%, #C4C8D2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: letter-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.15s + var(--i) * 0.04s);
+}
+
+@keyframes letter-rise {
+  from { transform: translateY(110%); }
+  to   { transform: none; }
+}
+
+/* Pointer-only flourish: letters lift as the cursor crosses them. Gated
+   so touch devices never get stuck in a hover state. */
+@media (hover: hover) and (pointer: fine) {
+  .wordmark-letter:hover {
+    transform: translateY(-0.06em);
+  }
+}
+
+/* Forced-colors mode drops the gradient rather than the text */
+@media (forced-colors: active) {
+  .wordmark-letter > span {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .wordmark-letter:hover {
+    transform: none;
   }
 }
