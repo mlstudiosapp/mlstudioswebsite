@@ -1,28 +1,22 @@
-"use client";
-
 import { Fragment } from "react";
-import { motion } from "framer-motion";
-import { TiltCard } from "@/components/ui/tilt-card";
 import { InquiryForm } from "@/components/ui/inquiry-form";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const services = [
   {
     title: "Websites",
     description:
       "Marketing sites, portfolios, and landing pages — fast, responsive, and built to convert.",
-    glowColor: "#8FA8FF",
   },
   {
     title: "Web Apps",
     description:
       "Dashboards, internal tools, and SaaS products — from first prototype to production.",
-    glowColor: "#6C8CFF",
   },
   {
     title: "Mobile Apps & Games",
     description:
       "Android apps and games, designed and shipped for the Play Store.",
-    glowColor: "#B388FF",
   },
 ];
 
@@ -32,98 +26,44 @@ export function ClientWork() {
   return (
     <section
       id="client-work"
-      className="relative py-32 px-6 border-t border-panel-border"
+      className="mx-auto w-full max-w-5xl border-t border-panel-border px-6 py-20 sm:py-24"
     >
-      <div className="text-center mb-16 max-w-2xl mx-auto">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="font-mono-label text-xs uppercase text-text-tertiary"
-        >
-          Client Work
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-4 text-3xl sm:text-4xl font-semibold"
-        >
-          Need something built?
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.16 }}
-          className="mt-4 text-text-secondary leading-relaxed"
-        >
-          We take on a small number of client projects — scoped tightly,
-          shipped fast, maintained properly.
-        </motion.p>
-      </div>
+      <SectionHeading
+        label="Client Work"
+        title="Need something built?"
+        body="We take on a small number of client projects — scoped tightly, shipped fast, maintained properly."
+      />
 
-      <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-        {services.map((service, index) => (
-          <motion.div
+      <div className="mt-12 grid gap-4 sm:grid-cols-3">
+        {services.map((service) => (
+          <div
             key={service.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.08 }}
-            className="h-full"
+            className="rounded-xl border border-panel-border bg-panel p-6"
           >
-            <TiltCard
-              glowColor={service.glowColor}
-              className="glass rounded-xl p-6"
-            >
-              <h3 className="text-lg font-medium">{service.title}</h3>
-              <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                {service.description}
-              </p>
-            </TiltCard>
-          </motion.div>
+            <h3 className="text-lg font-medium">{service.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+              {service.description}
+            </p>
+          </div>
         ))}
       </div>
 
-      <div className="max-w-2xl mx-auto mt-14 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+      <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2">
         {processSteps.map((step, index) => (
           <Fragment key={step}>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="font-mono-label text-xs uppercase text-text-secondary"
-            >
-              {step}
-            </motion.span>
+            <span className="label text-text-secondary">{step}</span>
             {index < processSteps.length - 1 && (
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.08 + 0.04 }}
-                className="text-text-tertiary"
-              >
+              <span className="text-text-tertiary" aria-hidden="true">
                 →
-              </motion.span>
+              </span>
             )}
           </Fragment>
         ))}
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.24 }}
-        className="mt-14"
-      >
+      <div className="mt-12">
         <InquiryForm />
-      </motion.div>
+      </div>
     </section>
   );
 }

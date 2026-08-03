@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 const CONTACT_EMAIL = "admin@mlstudiosapp.com";
@@ -12,13 +11,11 @@ const PROJECT_TYPES = ["Website", "Web App", "Mobile App", "Game", "Other"];
 type FormStatus = "idle" | "sending" | "success" | "error";
 
 const inputClasses =
-  "w-full rounded-lg bg-panel border border-panel-border px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-[var(--core-glow)] transition-colors";
+  "w-full rounded-lg border border-panel-border bg-void px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary transition-colors focus:border-accent focus:outline-none";
 
-const labelClasses =
-  "font-mono-label text-[10px] uppercase text-text-tertiary mb-1.5 block text-left";
+const labelClasses = "label mb-1.5 block text-text-tertiary";
 
 export function InquiryForm() {
-  const reduceMotion = useReducedMotion();
   const [status, setStatus] = useState<FormStatus>("idle");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -72,8 +69,8 @@ export function InquiryForm() {
 
   if (status === "success") {
     return (
-      <div className="glass rounded-xl p-8 max-w-xl mx-auto text-center">
-        <p className="text-lg font-medium text-text-primary">Message sent.</p>
+      <div className="max-w-xl rounded-xl border border-panel-border bg-panel p-8">
+        <p className="text-lg font-medium">Message sent.</p>
         <p className="mt-2 text-sm text-text-secondary">
           Thanks for reaching out — we&apos;ll get back to you within a couple
           of days.
@@ -85,7 +82,7 @@ export function InquiryForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="glass rounded-xl p-6 sm:p-8 max-w-xl mx-auto text-left"
+      className="max-w-xl rounded-xl border border-panel-border bg-panel p-6 sm:p-8"
     >
       <input
         type="text"
@@ -96,7 +93,7 @@ export function InquiryForm() {
         aria-hidden="true"
       />
 
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="inquiry-name" className={labelClasses}>
             Name
@@ -153,39 +150,21 @@ export function InquiryForm() {
       </div>
 
       {status === "error" && (
-        <p className="mt-4 text-sm text-[#FF8A8A]">
+        <p className="mt-4 text-sm text-[#E58A8A]">
           Something went wrong — please try again, or email {CONTACT_EMAIL}{" "}
           directly.
         </p>
       )}
 
-      <div className="mt-6 text-center">
-        <motion.button
+      <div className="mt-6 flex flex-wrap items-center gap-4">
+        <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full px-7 py-3 text-sm font-medium bg-[var(--core-glow)] text-[#05060A] transition-transform hover:scale-105 disabled:opacity-60 disabled:hover:scale-100"
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                  boxShadow: [
-                    "0 0 24px rgba(143,168,255,0.25)",
-                    "0 0 44px rgba(143,168,255,0.5)",
-                    "0 0 24px rgba(143,168,255,0.25)",
-                  ],
-                }
-          }
-          transition={
-            reduceMotion
-              ? undefined
-              : { duration: 2.6, repeat: Infinity, ease: "easeInOut" }
-          }
+          className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-void transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {status === "sending" ? "Sending…" : "Start a project"}
-        </motion.button>
-        <p className="mt-4 text-xs text-text-tertiary">
-          or email {CONTACT_EMAIL}
-        </p>
+        </button>
+        <p className="text-xs text-text-tertiary">or email {CONTACT_EMAIL}</p>
       </div>
     </form>
   );

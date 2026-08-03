@@ -1,14 +1,10 @@
-"use client";
-
-import type { CSSProperties, ReactNode } from "react";
-import { motion } from "framer-motion";
-import { TiltCard } from "@/components/ui/tilt-card";
+import type { ReactNode } from "react";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 interface Pillar {
   label: string;
   title: string;
   body: string;
-  accent: string;
   icon: ReactNode;
 }
 
@@ -17,11 +13,10 @@ const pillars: Pillar[] = [
     label: "01 — Own Products",
     title: "Products we run",
     body: "We design, build, and operate our own software — live in production, used daily, improved constantly.",
-    accent: "#6C8CFF",
     icon: (
       <svg
-        width="24"
-        height="24"
+        width="22"
+        height="22"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -40,11 +35,10 @@ const pillars: Pillar[] = [
     label: "02 — Client Work",
     title: "Builds for you",
     body: "Websites, web apps, and mobile apps for clients — scoped tightly, shipped fast, held to the same bar as our own products.",
-    accent: "#8FA8FF",
     icon: (
       <svg
-        width="24"
-        height="24"
+        width="22"
+        height="22"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -62,11 +56,10 @@ const pillars: Pillar[] = [
     label: "03 — Games",
     title: "Play, polished",
     body: "Small, carefully-made games — starting with Snake, coming to the Play Store.",
-    accent: "#3DDC84",
     icon: (
       <svg
-        width="24"
-        height="24"
+        width="22"
+        height="22"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -86,67 +79,29 @@ const pillars: Pillar[] = [
 
 export function WhatWeDo() {
   return (
-    <section id="what-we-do" className="relative py-32 px-6 border-t border-panel-border">
-      <div className="text-center mb-16 max-w-2xl mx-auto">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="font-mono-label text-xs uppercase text-text-tertiary"
-        >
-          What We Do
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-4 text-3xl sm:text-4xl font-semibold"
-        >
-          One studio, three lanes.
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.16 }}
-          className="mt-4 text-text-secondary leading-relaxed"
-        >
-          ML Studios builds software that earns its keep — for ourselves, for
-          clients, and for play.
-        </motion.p>
-      </div>
+    <section
+      id="what-we-do"
+      className="mx-auto w-full max-w-5xl px-6 py-20 sm:py-24"
+    >
+      <SectionHeading
+        label="What We Do"
+        title="One studio, three lanes."
+        body="ML Studios builds software that earns its keep — for ourselves, for clients, and for play."
+      />
 
-      <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-        {pillars.map((pillar, index) => (
-          <motion.div
+      <div className="mt-12 grid gap-4 sm:grid-cols-3">
+        {pillars.map((pillar) => (
+          <div
             key={pillar.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.08 }}
-            className="h-full"
+            className="rounded-xl border border-panel-border bg-panel p-6"
           >
-            <TiltCard glowColor={pillar.accent} className="h-full">
-              <div
-                style={{ "--accent": `${pillar.accent}66` } as CSSProperties}
-                className="glass rounded-xl p-6 h-full transition-colors duration-300 hover:border-[var(--accent)]"
-              >
-                <div style={{ color: pillar.accent }}>{pillar.icon}</div>
-                <span
-                  style={{ color: pillar.accent }}
-                  className="mt-4 block font-mono-label text-[10px] uppercase tracking-wider"
-                >
-                  {pillar.label}
-                </span>
-                <h3 className="mt-3 text-lg font-medium">{pillar.title}</h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  {pillar.body}
-                </p>
-              </div>
-            </TiltCard>
-          </motion.div>
+            <div className="text-text-tertiary">{pillar.icon}</div>
+            <p className="label mt-4 text-text-tertiary">{pillar.label}</p>
+            <h3 className="mt-3 text-lg font-medium">{pillar.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+              {pillar.body}
+            </p>
+          </div>
         ))}
       </div>
     </section>

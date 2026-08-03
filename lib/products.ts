@@ -9,10 +9,6 @@ export interface Product {
   description: string;
   status: ProductStatus;
   statusLabel: string;
-  colors: {
-    primary: string;
-    secondary: string;
-  };
   href: string;
   external: boolean;
 }
@@ -26,7 +22,6 @@ export const products: Product[] = [
       "Postwright drafts LinkedIn posts tailored to your role and expertise, then lets you review, approve, and schedule them. Nothing posts without you.",
     status: "live",
     statusLabel: "Live",
-    colors: { primary: "#6C8CFF", secondary: "#3A4FCC" },
     href: "https://scheduler.mlstudiosapp.com",
     external: true,
   },
@@ -38,7 +33,6 @@ export const products: Product[] = [
       "A fast resume builder with live preview, instant template switching, and AI-powered bullet point enhancement. Free, no watermarks, no trial limits.",
     status: "live",
     statusLabel: "Live",
-    colors: { primary: "#3DDC84", secondary: "#1E8F52" },
     href: "https://resume.mlstudiosapp.com",
     external: true,
   },
@@ -50,7 +44,6 @@ export const products: Product[] = [
       "A read-only trading analytics platform that connects to your broker to surface behavioral insights — win rates, holding periods, trading patterns — plus educational technical signals. No trade execution, no investment advice.",
     status: "live",
     statusLabel: "Live",
-    colors: { primary: "#F5C46B", secondary: "#B388FF" },
     href: "https://tradeorgs.mlstudiosapp.com",
     external: true,
   },
@@ -75,8 +68,3 @@ export const games: Game[] = [
 ];
 
 export const gamesHubUrl = "https://games.mlstudiosapp.com";
-
-export const studioStats = {
-  totalProducts: products.length,
-  live: products.filter((p) => p.status === "live").length,
-};

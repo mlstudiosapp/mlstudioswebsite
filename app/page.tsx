@@ -5,17 +5,15 @@ import { ProductsGrid } from "@/components/sections/products-grid";
 import { GamesSection } from "@/components/sections/games-section";
 import { ClientWork } from "@/components/sections/client-work";
 import { Footer } from "@/components/sections/footer";
-import { Marquee } from "@/components/ui/marquee";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { Capabilities } from "@/components/ui/capabilities";
 
 export default function Home() {
   return (
     <>
-      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
-        <Marquee />
+        <Capabilities />
         <WhatWeDo />
         <ProductsGrid />
         <GamesSection />
