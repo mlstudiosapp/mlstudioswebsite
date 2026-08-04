@@ -1,93 +1,152 @@
-"use client";
+import type { CSSProperties } from "react";
+import { products, games } from "@/lib/products";
 
-import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+// Split into words so a narrow viewport can only break at the space —
+// the per-letter spans would otherwise be valid break points.
+const WORDMARK = ["ML", "STUDIOS"];
 
-const HeroScene = dynamic(
-  () => import("@/components/three/hero-scene").then((mod) => mod.HeroScene),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 45%, rgba(143,168,255,0.2) 0%, rgba(143,168,255,0) 60%)",
-        }}
-      />
-    ),
-  }
-);
+function Wordmark() {
+  let letterIndex = 0;
+
+  return (
+    <span aria-hidden="true">
+      {WORDMARK.map((word, wordIndex) => (
+        <span key={word}>
+          {wordIndex > 0 && " "}
+          <span className="wordmark-word">
+            {[...word].map((char, i) => (
+              <span
+                key={`${word}-${i}`}
+                className="wordmark-letter"
+                style={{ "--i": String(letterIndex++) } as CSSProperties}
+              >
+                <span>{char}</span>
+              </span>
+            ))}
+          </span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+const statusRows = [
+  ...products.map((product) => ({
+    id: product.id,
+    name: product.name,
+    label: product.statusLabel,
+    live: true,
+  })),
+  ...games.map((game) => ({
+    id: game.id,
+    name: game.name,
+    label: "Soon",
+    live: false,
+  })),
+];
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col overflow-hidden grain pt-28 pb-16">
-      {/* 3D wordmark stage — bounded height, normal flow, cannot overlap content below */}
-      <div className="relative w-full h-[38vh] sm:h-[44vh] min-h-[260px] max-h-[440px]">
-        <HeroScene />
-      </div>
-
-      <div className="relative z-10 flex flex-col items-center px-6 mt-2 sm:mt-4">
-        <motion.span
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="font-mono-label text-xs uppercase text-text-tertiary mb-5"
-        >
-          Product &amp; Software Studio
-        </motion.span>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="text-[clamp(1.6rem,3.6vw,2.6rem)] font-semibold text-center leading-[1.1] max-w-3xl"
-        >
-          <span className="sr-only">ML Studios — </span>
-          We build things that actually work.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-5 text-text-secondary text-base sm:text-lg max-w-xl text-center leading-relaxed"
-        >
-          Websites, apps, and web apps — our own products, and yours. Some
-          lean on AI where it earns its place.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.45 }}
-          className="mt-9 flex flex-col sm:flex-row items-center gap-4"
-        >
-          <a
-            href="#products"
-            className="rounded-full px-7 py-3 text-sm font-medium bg-[var(--core-glow)] text-[#05060A] transition-transform hover:scale-105"
+    <section
+      aria-labelledby="hero-title"
+      className="shell pt-[clamp(48px,7vw,96px)] pb-[clamp(40px,5vw,72px)]"
+    >
+      <div className="flex flex-wrap items-start gap-[clamp(32px,5vw,64px)]">
+        <div className="min-w-0 max-w-[760px] flex-1 basis-[520px]">
+          <p
+            className="label line-in mb-[clamp(20px,2.4vw,28px)] text-[13px] text-text-secondary"
+            style={{ "--delay": "0.04s" } as CSSProperties}
           >
-            See our work
-          </a>
-          <a
-            href="#client-work"
-            className="rounded-full px-7 py-3 text-sm font-medium border border-panel-border text-text-primary transition-colors hover:border-text-tertiary"
-          >
-            Start a project
-          </a>
-        </motion.div>
-      </div>
+            Product &amp; Software Studio
+          </p>
 
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="mt-16 flex justify-center text-text-tertiary"
-        aria-hidden="true"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.div>
+          <h1
+            id="hero-title"
+            aria-label="ML Studios"
+            className="text-[clamp(2rem,9vw,5rem)] font-bold uppercase leading-none tracking-[0.06em]"
+          >
+            <Wordmark />
+          </h1>
+
+          <p
+            className="line-in mt-[clamp(20px,2.6vw,28px)] text-pretty text-[clamp(1.25rem,2.6vw,1.875rem)] leading-[1.25] tracking-[-0.02em] text-text-secondary"
+            style={{ "--delay": "0.48s" } as CSSProperties}
+          >
+            We build things that actually work.
+          </p>
+
+          <p
+            className="line-in mt-5 max-w-[54ch] text-pretty text-[17px] leading-[1.65] text-text-secondary"
+            style={{ "--delay": "0.58s" } as CSSProperties}
+          >
+            A small studio in three lanes: products we run ourselves, software
+            we build for clients, and games we finish. Same people on all of
+            it, which is why the standards hold.
+          </p>
+
+          <div
+            className="line-in mt-[clamp(28px,3.4vw,36px)] flex flex-wrap gap-3"
+            style={{ "--delay": "0.68s" } as CSSProperties}
+          >
+            <a
+              href="#inquiry"
+              className="inline-flex min-h-12 items-center rounded-lg border border-accent bg-accent px-[22px] text-[15px] font-semibold text-void transition-colors hover:bg-accent-hover"
+            >
+              Start a project
+            </a>
+            <a
+              href="#products"
+              className="inline-flex min-h-12 items-center rounded-lg border border-panel-border px-[22px] text-[15px] font-semibold text-text-primary transition-colors hover:border-accent"
+            >
+              See our products
+            </a>
+          </div>
+        </div>
+
+        <aside
+          aria-label="Studio status"
+          className="line-in min-w-0 max-w-[400px] flex-1 basis-80 rounded-xl border border-panel-border bg-panel p-5"
+          style={{ "--delay": "0.8s" } as CSSProperties}
+        >
+          <p className="label mb-4 text-text-secondary">In production</p>
+
+          <ul className="grid gap-px overflow-hidden rounded-lg bg-panel-border">
+            {statusRows.map((row) => (
+              <li
+                key={row.id}
+                className="flex min-h-12 items-center gap-3 bg-panel px-3.5 py-3"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`h-2 w-2 flex-none rounded-full ${
+                    row.live ? "bg-status-live" : "bg-status-soon"
+                  }`}
+                />
+                <span className="min-w-0 flex-1 text-[15px] font-semibold">
+                  {row.name}
+                </span>
+                <span
+                  className={`text-xs uppercase tracking-[0.1em] ${
+                    row.live ? "text-status-live" : "text-status-soon"
+                  }`}
+                >
+                  {row.label}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-4 border-t border-panel-border pt-4 text-sm leading-relaxed text-text-secondary">
+            Taking on a small number of client projects.{" "}
+            <a
+              href="#inquiry"
+              className="text-accent transition-colors hover:text-accent-link"
+            >
+              Check availability&nbsp;→
+            </a>
+          </p>
+        </aside>
+      </div>
     </section>
   );
 }

@@ -1,45 +1,49 @@
-"use client";
+import Link from "next/link";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+const links = [
+  { href: "#products", label: "Products" },
+  { href: "#games", label: "Games" },
+  { href: "#client-work", label: "Client Work" },
+];
 
 export function Nav() {
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 200, 280], [0, 0, 1]);
-  const y = useTransform(scrollY, [0, 280], [-20, 0]);
-
   return (
-    <motion.header
-      style={{ opacity, y }}
-      className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 sm:px-10 py-4 glass"
-    >
-      <div className="flex items-center gap-3">
-        <span
-          className="block w-2.5 h-2.5 rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle at 35% 30%, #DCE4FF, #8FA8FF 60%, #3A4FCC 100%)",
-            boxShadow: "0 0 10px rgba(143,168,255,0.7)",
-          }}
-          aria-hidden="true"
-        />
-        <span className="font-display font-semibold text-sm tracking-wide">
-          ML STUDIOS
-        </span>
-      </div>
-      <nav className="hidden sm:flex items-center gap-8 font-mono-label text-xs uppercase text-text-secondary">
-        <a href="#products" className="hover:text-text-primary transition-colors">
-          Products
-        </a>
-        <a href="#games" className="hover:text-text-primary transition-colors">
-          Games
-        </a>
-        <a
-          href="#client-work"
-          className="rounded-full px-4 py-2 border border-panel-border text-text-primary normal-case font-body hover:border-text-tertiary transition-colors"
+    <header className="sticky top-0 z-40 border-b border-panel-border bg-void">
+      <div className="shell flex flex-wrap items-center gap-x-6">
+        <Link
+          href="/"
+          className="flex min-h-14 flex-none items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] transition-colors hover:text-text-primary"
         >
-          Start a project
-        </a>
-      </nav>
-    </motion.header>
+          <span
+            aria-hidden="true"
+            className="grid h-[22px] w-[22px] place-items-center rounded-md border border-panel-border bg-panel text-[9px] tracking-[0.02em] text-text-secondary"
+          >
+            ML
+          </span>
+          ML Studios
+        </Link>
+
+        <nav
+          aria-label="Sections"
+          className="flex flex-1 basis-80 flex-wrap items-center justify-end gap-x-1 gap-y-0.5 py-1.5"
+        >
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="label flex min-h-11 items-center px-2 text-[13px] text-text-secondary transition-colors hover:text-text-primary sm:px-3"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#inquiry"
+            className="label ml-2 flex min-h-11 items-center rounded-lg border border-panel-border px-4 text-[13px] tracking-[0.08em] text-text-primary transition-colors hover:border-accent"
+          >
+            Start a project
+          </a>
+        </nav>
+      </div>
+    </header>
   );
 }

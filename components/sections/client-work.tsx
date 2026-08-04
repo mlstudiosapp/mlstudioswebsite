@@ -1,129 +1,58 @@
-"use client";
-
-import { Fragment } from "react";
-import { motion } from "framer-motion";
-import { TiltCard } from "@/components/ui/tilt-card";
-import { InquiryForm } from "@/components/ui/inquiry-form";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const services = [
   {
+    monogram: "WS",
     title: "Websites",
-    description:
-      "Marketing sites, portfolios, and landing pages — fast, responsive, and built to convert.",
-    glowColor: "#8FA8FF",
+    body: "Marketing sites and landing pages that load fast and stay editable.",
   },
   {
+    monogram: "WA",
     title: "Web Apps",
-    description:
-      "Dashboards, internal tools, and SaaS products — from first prototype to production.",
-    glowColor: "#6C8CFF",
+    body: "Dashboards, portals, and internal tools with real auth and real data.",
   },
   {
+    monogram: "MG",
     title: "Mobile Apps & Games",
-    description:
-      "Android apps and games, designed and shipped for the Play Store.",
-    glowColor: "#B388FF",
+    body: "Android builds for the Play Store, plus playable browser builds when that's the better fit.",
   },
 ];
-
-const processSteps = ["01 Scope", "02 Build", "03 Ship", "04 Maintain"];
 
 export function ClientWork() {
   return (
     <section
       id="client-work"
-      className="relative py-32 px-6 border-t border-panel-border"
+      aria-labelledby="client-title"
+      className="shell pt-[clamp(64px,8vw,112px)]"
     >
-      <div className="text-center mb-16 max-w-2xl mx-auto">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="font-mono-label text-xs uppercase text-text-tertiary"
-        >
-          Client Work
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-4 text-3xl sm:text-4xl font-semibold"
-        >
-          Need something built?
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.16 }}
-          className="mt-4 text-text-secondary leading-relaxed"
-        >
-          We take on a small number of client projects — scoped tightly,
-          shipped fast, maintained properly.
-        </motion.p>
-      </div>
+      <SectionHeading
+        id="client-title"
+        label="Client work"
+        title="Need something built?"
+        body="Fixed scope, weekly demos on a real URL, and a maintenance plan that starts the day you ship."
+      />
 
-      <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-        {services.map((service, index) => (
-          <motion.div
+      <div className="mt-[clamp(36px,4.5vw,56px)] grid gap-[clamp(16px,2vw,24px)] [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+        {services.map((service) => (
+          <article
             key={service.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.08 }}
-            className="h-full"
+            className="min-w-0 rounded-xl border border-panel-border bg-panel p-[clamp(18px,2vw,24px)] transition-colors hover:border-border-strong"
           >
-            <TiltCard
-              glowColor={service.glowColor}
-              className="glass rounded-xl p-6"
+            <span
+              aria-hidden="true"
+              className="grid h-11 w-11 place-items-center rounded-[10px] border border-panel-border bg-sunken text-sm font-semibold tracking-[0.06em] text-text-secondary"
             >
-              <h3 className="text-lg font-medium">{service.title}</h3>
-              <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                {service.description}
-              </p>
-            </TiltCard>
-          </motion.div>
+              {service.monogram}
+            </span>
+            <h3 className="mt-[18px] text-xl font-semibold leading-tight tracking-[-0.02em]">
+              {service.title}
+            </h3>
+            <p className="mt-2 text-pretty text-base leading-[1.6] text-text-secondary">
+              {service.body}
+            </p>
+          </article>
         ))}
       </div>
-
-      <div className="max-w-2xl mx-auto mt-14 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-        {processSteps.map((step, index) => (
-          <Fragment key={step}>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="font-mono-label text-xs uppercase text-text-secondary"
-            >
-              {step}
-            </motion.span>
-            {index < processSteps.length - 1 && (
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.08 + 0.04 }}
-                className="text-text-tertiary"
-              >
-                →
-              </motion.span>
-            )}
-          </Fragment>
-        ))}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.24 }}
-        className="mt-14"
-      >
-        <InquiryForm />
-      </motion.div>
     </section>
   );
 }

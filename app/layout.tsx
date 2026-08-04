@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 
 export const metadata: Metadata = {
   title: "ML Studios — We Build Things That Actually Work",
@@ -15,8 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#05060A] text-[#F4F4F8]">
-        <AuroraBackground />
+      <body className="min-h-full flex flex-col bg-void text-text-primary">
         {children}
       </body>
     </html>

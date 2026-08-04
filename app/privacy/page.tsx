@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Privacy Policy — ML Studios",
   description: "Privacy policy for ML Studios ecosystem hub.",
@@ -5,14 +7,14 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="container mx-auto max-w-2xl px-4 py-16">
+    <main className="mx-auto w-full max-w-2xl px-6 py-16">
       <h1 className="text-3xl font-semibold tracking-tight">Privacy Policy</h1>
       <p className="mt-2 text-sm text-text-tertiary">Last updated: July 4, 2026</p>
 
       <div className="mt-8 space-y-8 text-sm leading-6 text-text-secondary">
         <section>
           <p>
-            ML Studios ("we", "us", "our") operates the mlstudiosapp.com website (the "Website"). This privacy policy explains our practices regarding information collection and use.
+            ML Studios (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) operates the mlstudiosapp.com website (the &ldquo;Website&rdquo;). This privacy policy explains our practices regarding information collection and use.
           </p>
         </section>
 
@@ -33,7 +35,7 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-medium text-text-primary">Third-Party Services</h2>
           <p className="mt-3">The Website uses the following third-party services:</p>
           <ul className="mt-3 list-disc space-y-2 pl-5">
-            <li><strong>Hosting (Vercel).</strong> The Website is hosted on Vercel, which may log standard server information (IP address, referrer, user agent) for operational purposes. See Vercel's privacy policy for details.</li>
+            <li><strong>Hosting (Vercel).</strong> The Website is hosted on Vercel, which may log standard server information (IP address, referrer, user agent) for operational purposes. See Vercel&apos;s privacy policy for details.</li>
             <li><strong>External links.</strong> The Website links to external services (e.g., Scheduler, Arcana, Puzzle, Insurance AI). Each product has its own privacy policy — this policy applies only to the Website itself.</li>
           </ul>
         </section>
@@ -84,12 +86,12 @@ export default function PrivacyPage() {
         </section>
       </div>
 
-      <a
+      <Link
         href="/"
-        className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium border border-panel-border text-text-primary transition-colors hover:border-text-tertiary mt-10"
+        className="mt-10 inline-flex items-center justify-center gap-2 rounded-lg border border-panel-border px-5 py-2.5 text-sm font-medium text-text-primary transition-colors hover:border-text-tertiary"
       >
         Back to home
-      </a>
+      </Link>
     </main>
   );
 }
