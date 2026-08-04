@@ -1,68 +1,57 @@
-import { Fragment } from "react";
-import { InquiryForm } from "@/components/ui/inquiry-form";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const services = [
   {
+    monogram: "WS",
     title: "Websites",
-    description:
-      "Marketing sites, portfolios, and landing pages — fast, responsive, and built to convert.",
+    body: "Marketing sites and landing pages that load fast and stay editable.",
   },
   {
+    monogram: "WA",
     title: "Web Apps",
-    description:
-      "Dashboards, internal tools, and SaaS products — from first prototype to production.",
+    body: "Dashboards, portals, and internal tools with real auth and real data.",
   },
   {
+    monogram: "MG",
     title: "Mobile Apps & Games",
-    description:
-      "Android apps and games, designed and shipped for the Play Store.",
+    body: "Android builds for the Play Store, plus playable browser builds when that's the better fit.",
   },
 ];
-
-const processSteps = ["01 Scope", "02 Build", "03 Ship", "04 Maintain"];
 
 export function ClientWork() {
   return (
     <section
       id="client-work"
-      className="mx-auto w-full max-w-5xl border-t border-panel-border px-6 py-20 sm:py-24"
+      aria-labelledby="client-title"
+      className="shell pt-[clamp(64px,8vw,112px)]"
     >
       <SectionHeading
-        label="Client Work"
+        id="client-title"
+        label="Client work"
         title="Need something built?"
-        body="We take on a small number of client projects — scoped tightly, shipped fast, maintained properly."
+        body="Fixed scope, weekly demos on a real URL, and a maintenance plan that starts the day you ship."
       />
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-3">
+      <div className="mt-[clamp(36px,4.5vw,56px)] grid gap-[clamp(16px,2vw,24px)] [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
         {services.map((service) => (
-          <div
+          <article
             key={service.title}
-            className="rounded-xl border border-panel-border bg-panel p-6"
+            className="min-w-0 rounded-xl border border-panel-border bg-panel p-[clamp(18px,2vw,24px)] transition-colors hover:border-border-strong"
           >
-            <h3 className="text-lg font-medium">{service.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-              {service.description}
+            <span
+              aria-hidden="true"
+              className="grid h-11 w-11 place-items-center rounded-[10px] border border-panel-border bg-sunken text-sm font-semibold tracking-[0.06em] text-text-secondary"
+            >
+              {service.monogram}
+            </span>
+            <h3 className="mt-[18px] text-xl font-semibold leading-tight tracking-[-0.02em]">
+              {service.title}
+            </h3>
+            <p className="mt-2 text-pretty text-base leading-[1.6] text-text-secondary">
+              {service.body}
             </p>
-          </div>
+          </article>
         ))}
-      </div>
-
-      <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2">
-        {processSteps.map((step, index) => (
-          <Fragment key={step}>
-            <span className="label text-text-secondary">{step}</span>
-            {index < processSteps.length - 1 && (
-              <span className="text-text-tertiary" aria-hidden="true">
-                →
-              </span>
-            )}
-          </Fragment>
-        ))}
-      </div>
-
-      <div className="mt-12">
-        <InquiryForm />
       </div>
     </section>
   );

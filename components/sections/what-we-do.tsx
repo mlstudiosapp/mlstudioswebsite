@@ -1,79 +1,20 @@
-import type { ReactNode } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-interface Pillar {
-  label: string;
-  title: string;
-  body: string;
-  icon: ReactNode;
-}
-
-const pillars: Pillar[] = [
+const lanes = [
   {
-    label: "01 — Own Products",
+    number: "01",
     title: "Products we run",
-    body: "We design, build, and operate our own software — live in production, used daily, improved constantly.",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 3 20 7.5v9L12 21 4 16.5v-9L12 3Z" />
-        <path d="M12 12 20 7.5" />
-        <path d="M12 12v9" />
-        <path d="M12 12 4 7.5" />
-      </svg>
-    ),
+    body: "Software we own, ship, and support. Real users, real uptime, nobody to hand the pager to.",
   },
   {
-    label: "02 — Client Work",
+    number: "02",
     title: "Builds for you",
-    body: "Websites, web apps, and mobile apps for clients — scoped tightly, shipped fast, held to the same bar as our own products.",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m8 7-5 5 5 5" />
-        <path d="m16 7 5 5-5 5" />
-        <path d="M13.5 5.5 10.5 18.5" />
-      </svg>
-    ),
+    body: "Websites, web apps, mobile. Scoped tight, demoed weekly, maintained after launch.",
   },
   {
-    label: "03 — Games",
+    number: "03",
     title: "Play, polished",
-    body: "Small, carefully-made games — starting with Snake, coming to the Play Store.",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="3" y="8" width="18" height="9" rx="4.5" />
-        <path d="M8 11v3" />
-        <path d="M6.5 12.5h3" />
-        <circle cx="15" cy="13.5" r="0.75" />
-        <circle cx="17.5" cy="11.5" r="0.75" />
-      </svg>
-    ),
+    body: "Games as practice. Small, finished, and tuned until the feel is right.",
   },
 ];
 
@@ -81,29 +22,37 @@ export function WhatWeDo() {
   return (
     <section
       id="what-we-do"
-      className="mx-auto w-full max-w-5xl px-6 py-20 sm:py-24"
+      aria-labelledby="what-title"
+      className="shell py-[clamp(64px,8vw,112px)]"
     >
       <SectionHeading
-        label="What We Do"
+        id="what-title"
+        label="What we do"
         title="One studio, three lanes."
-        body="ML Studios builds software that earns its keep — for ourselves, for clients, and for play."
+        body="The lanes feed each other on purpose. What we learn keeping our own products online goes straight into the work we do for clients — and the games keep the craft honest."
       />
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-3">
-        {pillars.map((pillar) => (
-          <div
-            key={pillar.label}
-            className="rounded-xl border border-panel-border bg-panel p-6"
+      <ol className="mt-[clamp(40px,5vw,64px)] grid gap-[clamp(24px,3vw,32px)] [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]">
+        {lanes.map((lane) => (
+          <li
+            key={lane.number}
+            className="min-w-0 border-l border-panel-border py-0.5 pl-[clamp(20px,2vw,28px)]"
           >
-            <div className="text-text-tertiary">{pillar.icon}</div>
-            <p className="label mt-4 text-text-tertiary">{pillar.label}</p>
-            <h3 className="mt-3 text-lg font-medium">{pillar.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-              {pillar.body}
+            <p
+              aria-hidden="true"
+              className="mb-3.5 text-[clamp(2.25rem,4vw,3.25rem)] font-bold leading-[0.9] tracking-[-0.03em] tabular-nums text-text-tertiary"
+            >
+              {lane.number}
             </p>
-          </div>
+            <h3 className="text-[22px] font-semibold leading-tight tracking-[-0.02em]">
+              {lane.title}
+            </h3>
+            <p className="mt-2.5 text-pretty text-base leading-[1.6] text-text-secondary">
+              {lane.body}
+            </p>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }

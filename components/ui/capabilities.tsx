@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const items = [
   "Websites",
   "Web Apps",
@@ -10,13 +12,21 @@ const items = [
 
 export function Capabilities() {
   return (
-    <div className="mx-auto w-full max-w-5xl px-6">
-      <div className="flex flex-wrap gap-x-6 gap-y-2 border-y border-panel-border py-5">
-        {items.map((item) => (
-          <span key={item} className="label text-text-tertiary">
-            {item}
-          </span>
-        ))}
+    <div className="border-y border-panel-border">
+      <div className="shell py-[18px]">
+        <h2 className="sr-only">Capabilities</h2>
+        <ul className="label flex flex-wrap items-center gap-x-[18px] gap-y-1.5 text-text-secondary">
+          {items.map((item, i) => (
+            <Fragment key={item}>
+              {i > 0 && (
+                <li aria-hidden="true" className="text-border-strong">
+                  /
+                </li>
+              )}
+              <li>{item}</li>
+            </Fragment>
+          ))}
+        </ul>
       </div>
     </div>
   );
